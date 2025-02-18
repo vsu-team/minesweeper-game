@@ -1,0 +1,54 @@
+body{
+    text-align: center;
+    margin: 5% 10%;
+}
+
+.grid {
+    padding: 0.5vh;
+    display: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    /* margin-top: 5px; */
+}
+
+[class^="grid-item-"] {
+    border: 2px solid black;
+    margin-bottom: 2px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.grid>div{
+    display: flex;
+    gap: 6px;
+}
+
+.main{
+    display: flex;
+    margin-top: 5px;
+}
+
+.game{
+    width: 70%;
+    background-color: beige;
+    height: max-content;
+}
+
+.menu{
+    width: 30%;
+    background-color: rgb(251, 232, 249);
+
+}
+
+.flag{
+    width: 30px;
+    height: 40px;
+}
+
+.flag-inside{
+    width: 80%;
+    height: 80%;
+}
