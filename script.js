@@ -55,8 +55,42 @@ const gridCreation = (size) => {
   }
 };
 
+const zeroReveal = (x, y, allGridItems, visited, minesMatrix, size) => {
+  let queue = [];
+
+  queue.push([x, y]);
+  const zeroIndex = x * size + y;
+  allGridItems[zeroIndex].textContent = "";
+  while (queue.length > 0) {
+    [x, y] = queue.shift();
+    visited[x][y] = 1;
+    for (let i = x - 1; i <= x + 1; i++) {
+      for (let j = y - 1; j <= y + 1; j++) {
+        if (
+          i >= 0 &&
+          i < size &&
+          j >= 0 &&
+          j < size &&
+          minesMatrix[i][j] !== "*" &&
+          visited[i][j] === 0 &&
+          (i !== x || j !== y)
+        ) {
+          if (minesMatrix[i][j] === 0) {
+            queue.push([i, j]);
+          } else {
+            visited[i][j] = 1;
+            const numIndex = i * size + j;
+            allGridItems[numIndex].textContent = minesMatrix[i][j];
+          }
+        }
+      }
+    }
+  }
+};
+
 //reveals the content of cell
 const openCells = (size, minesMatrix, allGridItems) => {
+  let visited = Array.from({ length: size }, () => new Array(size).fill(0));
   for (let index = 0; index < size * size; index++) {
     allGridItems[index].addEventListener("click", () => {
       let parts = allGridItems[index].className.split("-");
@@ -64,8 +98,18 @@ const openCells = (size, minesMatrix, allGridItems) => {
       let colIndex = parseInt(parts[3]);
       if (minesMatrix[rowIndex][colIndex] === "*") {
         allGridItems[index].textContent = "💣";
+      } else if (minesMatrix[rowIndex][colIndex] === 0) {
+        zeroReveal(
+          rowIndex,
+          colIndex,
+          allGridItems,
+          visited,
+          minesMatrix,
+          size
+        );
       } else {
         allGridItems[index].textContent = minesMatrix[rowIndex][colIndex];
+        visited[rowIndex][colIndex] = 1;
       }
     });
   }
@@ -92,6 +136,7 @@ const flagCell = (size, allGridItems) => {
 
 //start game function
 const startGame = () => {
+  let gameActive = true;
   //event listener for start-game button
   document.getElementById("start-game").addEventListener("click", function () {
     //The size of matrix and the quantity of mines
@@ -105,9 +150,24 @@ const startGame = () => {
     //grid visually creation
     gridCreation(size);
     const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
+
     openCells(size, minesMatrix, allGridItems);
     flagCell(size, allGridItems);
   });
+  const pauseGame = () => {
+    gameActive = false;
+    //clearInterval(timer); // Stop the timer
+    const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
+    allGridItems.forEach((item) => (item.style.pointerEvents = "none")); // Disable clicks
+  };
+  const resumeGame = () => {
+    gameActive = true;
+    //startTimer(); // Restart the timer
+    const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
+    allGridItems.forEach((item) => (item.style.pointerEvents = "auto")); // Enable clicks
+  };
+  document.getElementById("pause-game").addEventListener("click", pauseGame);
+  document.getElementById("resume-game").addEventListener("click", resumeGame);
 };
 
 startGame();
