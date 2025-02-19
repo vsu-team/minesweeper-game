@@ -13,6 +13,10 @@ body{
     /* margin-top: 5px; */
 }
 
+.active-grid {
+    display: block;
+}
+
 [class^="grid-item-"] {
     border: 2px solid black;
     margin-bottom: 2px;

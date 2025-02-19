@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>Minesweeper</h1>
     <input id="size" type="number" placeholder="Input number">
     <input id="mines" type="number" placeholder="Input mines">
     <button id="start-game">Start Game</button>
     <div class="main">
-        <div class="game">
+        <div class="game" id="game">
             <div class="grid" id="my-grid"></div>
         </div>
-        <div class="menu">
-            <img class="flag" src="images/flag.png" alt="flag" >
+        <div class="menu" id="menu">
+            <img class="flag" src="images/flag.png" alt="flag">
         </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
