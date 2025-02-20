@@ -64,3 +64,11 @@ body{
     align-items: center;
     margin-top: 20px;
 }
+
+.game-over{
+    pointer-events: none;
+}
+
+.click-color{
+    background-color: lightgrey;
+}
