@@ -135,7 +135,7 @@ const zeroReveal = (x, y, allGridItems, visited, minesMatrix, size, revealedCell
             visited[i][j] = 1;
             const numIndex = i * size + j;
             allGridItems[numIndex].textContent = minesMatrix[i][j];
-            allGridItems[numIndex].classList.add("click-color");
+            allGridItems[numIndex].classList.add("click-number");
             revealedCells.count++;
           }
           
@@ -191,7 +191,7 @@ const openCells = (size, mines, minesMatrix, allGridItems) => {
         //controling the cell which is number
       } else {
         allGridItems[index].textContent = minesMatrix[rowIndex][colIndex];
-        allGridItems[index].classList.add("click-color");
+        allGridItems[index].classList.add("click-number");
         visited[rowIndex][colIndex] = 1;
         revealedCells.count++;
       }
