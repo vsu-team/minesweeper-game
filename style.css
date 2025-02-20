@@ -1,6 +1,86 @@
 body{
+    font-family: Arial, sans-serif;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* height: 100vh; */
+
     text-align: center;
-    margin: 5% 10%;
+    margin: 2% 10%;
+}
+
+.modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container {
+    /* width: 50vh; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+label {
+    flex: 1;
+    text-align: left;
+}
+.number-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 120px;
+}
+.number-input input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+.number-input button {
+    background: #f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.number-input button:hover {
+    background: #ddd;
+}
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.btn.play {
+    background: #2d8f2d;
+    color: white;
+}
+.btn.play:hover {
+    background: #256e25;
+}
+.btn.cancel {
+    background: #e0e0e0;
+    color: black;
+}
+.btn.cancel:hover {
+    background: #ccc;
 }
 
 .grid {
@@ -37,13 +117,13 @@ body{
 
 .game{
     width: 70%;
-    background-color: beige;
+    /* background-color: beige; */
     height: max-content;
 }
 
 .menu{
     width: 30%;
-    background-color: rgb(251, 232, 249);
+    /* background-color: rgb(251, 232, 249); */
 
 }
 

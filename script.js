@@ -1,3 +1,29 @@
+function changeValue(id, change) {
+  let input = document.getElementById(id);
+  let value = parseInt(input.value) || 0;
+  value = Math.max(0, value + change);
+  input.value = value;
+}
+
+
+//grid creation visualy
+const gridCreation = (size) => {
+  const gridContainer = document.getElementById("my-grid");
+  gridContainer.classList.add("active-grid");
+  gridContainer.innerHTML = "";
+  for (let i = 0; i < size; ++i) {
+    const row = document.createElement("div");
+    for (let j = 0; j < size; ++j) {
+      const gridItem = document.createElement("div");
+      gridItem.className = `grid-item-${i}-${j}`;
+      gridItem.setAttribute("data-state", "hidden");
+      gridItem.textContent = "";
+      row.appendChild(gridItem);
+    }
+    gridContainer.append(row);
+  }
+};
+
 const disableGrid = () => {
   const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
   allGridItems.forEach((item) => item.classList.add("game-over"));
@@ -84,24 +110,6 @@ const numbersCalculation = (minesMatrix, minesIndexes, size) => {
     }
   }
   return minesMatrix;
-};
-
-//grid creation visualy
-const gridCreation = (size) => {
-  const gridContainer = document.getElementById("my-grid");
-  gridContainer.classList.add("active-grid");
-  gridContainer.innerHTML = "";
-  for (let i = 0; i < size; ++i) {
-    const row = document.createElement("div");
-    for (let j = 0; j < size; ++j) {
-      const gridItem = document.createElement("div");
-      gridItem.className = `grid-item-${i}-${j}`;
-      gridItem.setAttribute("data-state", "hidden");
-      gridItem.textContent = "";
-      row.appendChild(gridItem);
-    }
-    gridContainer.append(row);
-  }
 };
 
 const zeroReveal = (x, y, allGridItems, visited, minesMatrix, size, revealedCells) => {

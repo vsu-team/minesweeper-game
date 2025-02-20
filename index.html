@@ -10,20 +10,54 @@
 
 <body>
     <h1>Minesweeper</h1>
-    <input id="size" type="number" placeholder="Input number">
-    <input id="mines" type="number" placeholder="Input mines">
-    <div class="button-container">
-        <button id="start-game">Start Game</button>
-        <button id="pause-game">Pause Game</button>
-        <button id="resume-game">Resume Game</button>
+    <div class="modal" id="modal">
+        <div class="container">
+            <div class="input-group">
+                <label for="size">Size</label>
+                <div class="number-input">
+                    <button onclick="changeValue('size', -1)">-</button>
+                    <input type="text" id="size" value="0">
+                    <button onclick="changeValue('size', 1)">+</button>
+                </div>
+            </div>
+        
+            <!-- <div class="input-group">
+                <label for="height">Height</label>
+                <div class="number-input">
+                    <button onclick="changeValue('height', -1)">-</button>
+                    <input type="text" id="height" value="0">
+                    <button onclick="changeValue('height', 1)">+</button>
+                </div>
+            </div> -->
+        
+            <div class="input-group">
+                <label for="mines">Mines</label>
+                <div class="number-input">
+                    <button onclick="changeValue('mines', -1)">-</button>
+                    <input type="text" id="mines" value="0">
+                    <button onclick="changeValue('mines', 1)">+</button>
+                </div>
+            </div>
+        
+            <button class="btn play" id="start-game">Play Game</button>
+            <button class="btn cancel">Cancel</button>
+        </div>
     </div>
+
+    <!-- <input id="size" type="number" placeholder="Input number">
+    <input id="mines" type="number" placeholder="Input mines"> -->
+
     <div class="main">
         <div class="game" id="game">
             <div class="grid" id="my-grid"></div>
         </div>
         <div class="menu" id="menu">
             <img class="flag" src="images/flag.png" alt="flag">
-
+            <div class="button-container">
+                <!-- <button id="start-game">Start Game</button> -->
+                <button id="pause-game">Pause Game</button>
+                <button id="resume-game">Resume Game</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
