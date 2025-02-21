@@ -1,15 +1,54 @@
-body{
+body {
     font-family: Arial, sans-serif;
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* height: 100vh; */
-
     text-align: center;
-    margin: 2% 10%;
+    margin: 1% 10%;
 }
 
-.modal{
+#dark-mode-btn {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    padding: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .grid {
+    border: 1px solid white; /* Uncomment this line if you want a white border in dark mode */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Adjust the shadow color and opacity as needed */
+    color: black;
+}
+
+.dark-mode .grid [class^="grid-item-"] {
+    border: 1px solid #f7f5f5;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+}
+
+.dark-mode .container {
+    border: 1px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+}
+
+.dark-mode .number-input {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); 
+}
+
+.dark-mode .menu{
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+}
+/* 
+.dark-mode button {
+    background-color: #01733a !important;
+    color: #ffffff !important;
+} */
+
+.modal {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,22 +59,25 @@ body{
     /* width: 50vh; */
     /* display: flex; */
     /* flex-direction: column; */
-    background: white;
+    /* background: white; */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
+
 .input-group {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 15px;
 }
+
 label {
     flex: 1;
     text-align: left;
 }
+
 .number-input {
     display: flex;
     align-items: center;
@@ -44,21 +86,25 @@ label {
     overflow: hidden;
     width: 120px;
 }
+
 .number-input input {
     width: 40px;
     text-align: center;
     border: none;
     outline: none;
 }
+
 .number-input button {
-    background: #f0f0f0;
+    /* background: #f0f0f0; */
     border: none;
     padding: 5px 10px;
     cursor: pointer;
 }
+
 .number-input button:hover {
     background: #ddd;
 }
+
 .btn {
     width: 100%;
     padding: 10px;
@@ -68,71 +114,112 @@ label {
     margin-top: 10px;
     font-size: 16px;
 }
+
 .btn.play {
     background: #2d8f2d;
     color: white;
 }
+
 .btn.play:hover {
     background: #256e25;
 }
+
 .btn.cancel {
     background: #e0e0e0;
     color: black;
 }
+
 .btn.cancel:hover {
     background: #ccc;
 }
 
 .grid {
-    padding: 0.5vh;
+    padding: 0.6vh;
     display: none;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* margin-bottom: calc(3px-0.3vh); */
     /* margin-top: 5px; */
 }
 
-.active-grid {
+.grid > div:last-child {
+    padding-bottom: -0.3vh;
+}
+
+
+
+.border {
+    border: 2px solid white;
+
+}
+
+.active-block {
     display: block;
 }
 
+.active-flex {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
 [class^="grid-item-"] {
-    border: 2px solid black;
+    border: 1px solid black;
     margin-bottom: 2px;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
+    font-size: 24px;
+    text-align: center;
     cursor: pointer;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
-.grid>div{
+
+
+.grid>div {
     display: flex;
-    gap: 6px;
+    gap: 0.9px;
 }
 
-.main{
+.main {
+    margin-top: 20px;
     display: flex;
-    margin-top: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
 }
 
-.game{
-    width: 70%;
-    /* background-color: beige; */
+.game {
+
+    min-width: 600px;
     height: max-content;
 }
 
-.menu{
-    width: 30%;
-    /* background-color: rgb(251, 232, 249); */
-
+.menu {
+    display: none;
+    width: 300px;
+    /* border: 2px solid black; */
+    padding: 2px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* min-width: 200px; */
+    height: 770px;
 }
 
-.flag{
+.flag {
     width: 30px;
     height: 40px;
 }
 
-.flag-inside{
+.flag-inside {
     width: 80%;
     height: 80%;
 }
@@ -140,19 +227,53 @@ label {
 .button-container {
     display: flex;
     flex-direction: column;
-    gap: 10px; 
+    gap: 10px;
     align-items: center;
     margin-top: 20px;
 }
 
-.game-over{
+.game-over {
     pointer-events: none;
 }
 
-.click-color{
+.click-color {
     background-color: lightgrey;
 }
 
-.click-number{
-    background-color: greenyellow;
+
+.click-number-1 {
+    background-color: #8dcb9b; 
 }
+
+.click-number-2 {
+    background-color: #e1df6a; 
+}
+
+.click-number-3 {
+    background-color: #f19809; 
+}
+
+.click-number-4 {
+    background-color: #ca5c34; 
+}
+
+.click-number-5 {
+    background-color: #e92308; 
+}
+
+.click-number-6 {
+    background-color: #5c0554; 
+}
+
+.click-number-7 {
+    background-color: #6206ea; 
+}
+
+.click-number-8 {
+    background-color: #022814; 
+}
+
+.bomb-click{
+    background-color: #db220a;
+}
+
