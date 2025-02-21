@@ -19,8 +19,8 @@ body {
 }
 
 .dark-mode .grid {
-    border: 1px solid white; /* Uncomment this line if you want a white border in dark mode */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Adjust the shadow color and opacity as needed */
+    border: 1px solid white; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
     color: black;
 }
 
