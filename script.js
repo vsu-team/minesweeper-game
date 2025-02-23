@@ -230,6 +230,8 @@ const openCells = (
         //revealing all the bombs present
         revealAllBombs(allGridItems, minesIndexes, size, flagIndexes);
         alert("Game Over!");
+        document.getElementById("pause-game").disabled = true; //added
+        document.getElementById("resume-game").disabled = true; //added
         //controling the cell which is 0(empty)
       } else if (minesMatrix[rowIndex][colIndex] === 0) {
         zeroReveal(
@@ -254,6 +256,8 @@ const openCells = (
         win.state = true;
         alert("You win!");
         disableGrid();
+        document.getElementById("pause-game").disabled = true; //added
+        document.getElementById("resume-game").disabled = true; //added
       }
     });
   }
@@ -361,12 +365,16 @@ const startGame = (size, mines) => {
   });
 
   const pauseGame = () => {
+    document.getElementById("pause-game").disabled = true;
+    document.getElementById("resume-game").disabled = false; //es pausei mej em avelacrel
     gameActive = false;
     //clearInterval(timer); // Stop the timer
     const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
     allGridItems.forEach((item) => (item.style.pointerEvents = "none")); // Disable clicks
   };
   const resumeGame = () => {
+    document.getElementById("pause-game").disabled = false;
+    document.getElementById("resume-game").disabled = true;
     gameActive = true;
     //startTimer(); // Restart the timer
     const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
