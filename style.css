@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 1% 10%;
+    background-color: #FDBE55;
 }
 
 #dark-mode-btn {
@@ -19,29 +20,31 @@ body {
 }
 
 .dark-mode .grid {
-    border: 1px solid white; 
+    border: 1px solid white;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
     color: black;
 }
 
 .dark-mode .grid [class^="grid-item-"] {
     border: 1px solid #f7f5f5;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    background-color: #022814;
 }
 
 .dark-mode .container {
     border: 1px solid white;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .dark-mode .number-input {
     background-color: white;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
-.dark-mode .menu{
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+.dark-mode .menu {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
 }
+
 /* 
 .dark-mode button {
     background-color: #01733a !important;
@@ -52,18 +55,26 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
-.container {
-    /* width: 50vh; */
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* background: white; */
+.option-container {
+    background: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 980px;
+}
+
+.container {
+    display: none;
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
 }
 
 .input-group {
@@ -118,6 +129,7 @@ label {
 .btn.play {
     background: #2d8f2d;
     color: white;
+    width: 10vw;
 }
 
 .btn.play:hover {
@@ -134,6 +146,7 @@ label {
 }
 
 .grid {
+    background-color: rgb(205, 193, 193);
     padding: 0.6vh;
     display: none;
     width: fit-content;
@@ -146,15 +159,16 @@ label {
     /* margin-top: 5px; */
 }
 
-.grid > div:last-child {
+.grid>div>div{
+    background-color: white;
+}
+
+.grid>div:last-child {
     padding-bottom: -0.3vh;
 }
 
-
-
 .border {
     border: 2px solid white;
-
 }
 
 .active-block {
@@ -206,10 +220,11 @@ label {
 .menu {
     display: none;
     width: 300px;
+    background-color: white;
     /* border: 2px solid black; */
     padding: 2px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     /* min-width: 200px; */
     height: 770px;
 }
@@ -237,43 +252,70 @@ label {
 }
 
 .click-color {
-    background-color: lightgrey;
+    background-color: lightgrey !important;
 }
 
 
 .click-number-1 {
-    background-color: #8dcb9b; 
+    background-color: #8dcb9b !important;
 }
 
 .click-number-2 {
-    background-color: #e1df6a; 
+    background-color: #e1df6a !important;
 }
 
 .click-number-3 {
-    background-color: #f19809; 
+    background-color: #f19809 !important;
 }
 
 .click-number-4 {
-    background-color: #ca5c34; 
+    background-color: #ca5c34 !important;
 }
 
 .click-number-5 {
-    background-color: #e92308; 
+    background-color: #e92308 !important;
 }
 
 .click-number-6 {
-    background-color: #5c0554; 
+    background-color: #5c0554 !important;
 }
 
 .click-number-7 {
-    background-color: #6206ea; 
+    background-color: #6206ea !important;
 }
 
 .click-number-8 {
-    background-color: #022814; 
+    background-color: #022814 !important;
 }
 
-.bomb-click{
-    background-color: #db220a;
+.bomb-click {
+    background-color: #db220a !important;
 }
 
+/* 
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 600px;
+} */
+
+.option-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.option {
+    background: lightblue;
+    padding: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: deepskyblue;
+}

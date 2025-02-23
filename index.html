@@ -10,14 +10,24 @@
 
 <body>
     <h1>Minesweeper</h1>
-    <button id="dark-mode-btn">🌙</button>
+    <button id="dark-mode-btn" onclick="darkMode()">🌙</button>
     <div class="modal" id="modal">
-        <div class="container">
+        <div class="option-container" id="option-container">
+            <div class="option-grid">
+                <div class="option" onclick="selectGrid(8,10)">8 x 8<br>10 mines</div>
+                <div class="option" onclick="selectGrid(16,40)">16 x 16<br>40 mines</div>
+                <div class="option" onclick="selectGrid(20,60)">20 x 20<br>60 mines</div>
+                <div class="option" onclick="customGrid()">? <br>custom</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal">
+        <div class="container" id="container">
             <div class="input-group">
                 <label for="size">Size</label>
                 <div class="number-input">
                     <button onclick="changeValue('size', -1)">-</button>
-                    <input type="text" id="size" value="0">
+                    <input type="text" id="size" value="0" onchange="customGrid()">
                     <button onclick="changeValue('size', 1)">+</button>
                 </div>
             </div>
@@ -25,15 +35,15 @@
                 <label for="mines">Mines</label>
                 <div class="number-input">
                     <button onclick="changeValue('mines', -1)">-</button>
-                    <input type="text" id="mines" value="0">
+                    <input type="text" id="mines" value="0" onchange="customGrid()">
                     <button onclick="changeValue('mines', 1)">+</button>
                 </div>
             </div>
-        
-            <button class="btn play" id="start-game">Play Game</button>
-            <button class="btn cancel">Cancel</button>
+
+            <button class="btn cancel" onclick="cancelCustom()">Cancel</button>
         </div>
     </div>
+    <button class="btn play" id="start-game">Play Game</button>
     <div class="main">
         <div class="game" id="game">
             <div class="grid" id="my-grid"></div>

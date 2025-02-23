@@ -3,6 +3,35 @@ function changeValue(id, change) {
   let value = parseInt(input.value) || 0;
   value = Math.max(0, value + change);
   input.value = value;
+
+  customGrid();
+}
+
+function customGrid() {
+  document.getElementById("option-container").style.display = "none";
+  document.getElementById("container").style.display = "block";
+
+  let size = parseInt(document.getElementById("size").value); // Ensure this is updated
+  let mines = parseInt(document.getElementById("mines").value); // Ensure this is updated
+
+  document.getElementById("size").addEventListener("input", () => {
+    size = parseInt(document.getElementById("size").value); // Ensure this is updated
+  });
+
+  document.getElementById("mines").addEventListener("input", () => {
+    mines = parseInt(document.getElementById("mines").value); // Ensure this is updated
+  });
+  console.log(`Starting game with size: ${size} and mines: ${mines}`); // Debugging log
+  startGame(size, mines); // Call with updated values
+}
+
+function cancelCustom() {
+  document.getElementById("container").style.display = "none";
+  document.getElementById("option-container").style.display = "block";
+}
+
+function selectGrid(rows, mines) {
+  startGame(rows, mines);
 }
 
 //grid creation visualy
@@ -28,23 +57,30 @@ const disableGrid = () => {
   allGridItems.forEach((item) => item.classList.add("game-over"));
 };
 
-const revealAllBombs = (allGridItems, minesIndexes, size,flagIndexes) => {
+const revealAllBombs = (allGridItems, minesIndexes, size, flagIndexes) => {
   for (let [x, y] of minesIndexes) {
     const index = x * size + y;
     allGridItems[index].textContent = "💣";
   }
-  displayIncorrectFlags(allGridItems, minesIndexes,flagIndexes,size);
+  displayIncorrectFlags(allGridItems, minesIndexes, flagIndexes, size);
   disableGrid();
 };
-const displayIncorrectFlags = (allGridItems, minesIndexes, flagIndexes, size) => {
+const displayIncorrectFlags = (
+  allGridItems,
+  minesIndexes,
+  flagIndexes,
+  size
+) => {
   for (let i = 0; i < allGridItems.length; i++) {
     const cellState = allGridItems[i].getAttribute("data-state");
     if (cellState === "flagged") {
       const row = Math.floor(i / size);
       const col = i % size;
-      if (!minesIndexes.some(([r, c]) => r === row && c === col) && 
-          flagIndexes.some(([r, c]) => r === row && c === col)) {
-          allGridItems[i].textContent = "❌";
+      if (
+        !minesIndexes.some(([r, c]) => r === row && c === col) &&
+        flagIndexes.some(([r, c]) => r === row && c === col)
+      ) {
+        allGridItems[i].textContent = "❌";
       }
     }
   }
@@ -142,7 +178,9 @@ const zeroReveal = (
             visited[i][j] = 1;
             const numIndex = i * size + j;
             allGridItems[numIndex].textContent = minesMatrix[i][j];
-            allGridItems[numIndex].classList.add(`click-number-${minesMatrix[i][j]}`);
+            allGridItems[numIndex].classList.add(
+              `click-number-${minesMatrix[i][j]}`
+            );
             revealedCells.count++;
           }
         }
@@ -167,7 +205,6 @@ const openCells = (
   let minesIndexes = [];
   for (let index = 0; index < size * size; index++) {
     allGridItems[index].addEventListener("click", () => {
-      
       //getting indexes from className
       let parts = allGridItems[index].className.split("-");
       let rowIndex = parseInt(parts[2]);
@@ -192,7 +229,7 @@ const openCells = (
         allGridItems[index].classList.add("bomb-click");
         //revealing all the bombs present
         revealAllBombs(allGridItems, minesIndexes, size, flagIndexes);
-        alert("Game Over!");  
+        alert("Game Over!");
         //controling the cell which is 0(empty)
       } else if (minesMatrix[rowIndex][colIndex] === 0) {
         zeroReveal(
@@ -207,7 +244,9 @@ const openCells = (
         //controling the cell which is number
       } else {
         allGridItems[index].textContent = minesMatrix[rowIndex][colIndex];
-        allGridItems[index].classList.add(`click-number-${minesMatrix[rowIndex][colIndex]}`);
+        allGridItems[index].classList.add(
+          `click-number-${minesMatrix[rowIndex][colIndex]}`
+        );
         visited[rowIndex][colIndex] = 1;
         revealedCells.count++;
       }
@@ -267,26 +306,31 @@ const flagCell = (size, allGridItems, visited, first_click, flagIndexes) => {
   }
 };
 
-//start game function
-const startGame = () => {
-  let gameActive = true;
-  const flagIndexes=[];
+const darkMode = () => {
   const darkMode = document.getElementById("dark-mode-btn");
-  darkMode.addEventListener("click", () => {
-    if (darkMode.textContent === "🌙") {
-      document.body.classList.add("dark-mode");
-      darkMode.textContent = "🌞";
-    } else {
-      document.body.classList.remove("dark-mode");
-      darkMode.textContent = "🌙";
-    }
-  });
+
+  if (darkMode.textContent === "🌙") {
+    document.body.classList.add("dark-mode");
+    darkMode.textContent = "🌞";
+  } else {
+    document.body.classList.remove("dark-mode");
+    darkMode.textContent = "🌙";
+  }
+};
+
+//start game function
+const startGame = (size, mines) => {
+  let gameActive = true;
+  const flagIndexes = [];
   //event listener for start-game button
   document.getElementById("start-game").addEventListener("click", function () {
-    const win = {state: false};
-    //The size of matrix and the quantity of mines
-    const size = parseInt(document.getElementById("size").value);
-    const mines = parseInt(document.getElementById("mines").value);
+    document.getElementById("size").addEventListener("input", function () {
+      size = parseInt(document.getElementById("size").value);
+    });
+    document.getElementById("mines").addEventListener("input", function () {
+      mines = parseInt(document.getElementById("mines").value);
+    });
+    const win = { state: false };
 
     document.getElementById("menu").classList.add("active-flex");
 
@@ -303,7 +347,16 @@ const startGame = () => {
     const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
 
     const first_click = { click: true };
-    openCells(size, mines, minesMatrix, visited, first_click, allGridItems, flagIndexes, win);
+    openCells(
+      size,
+      mines,
+      minesMatrix,
+      visited,
+      first_click,
+      allGridItems,
+      flagIndexes,
+      win
+    );
     flagCell(size, allGridItems, visited, first_click, flagIndexes);
   });
 
@@ -323,4 +376,4 @@ const startGame = () => {
   document.getElementById("resume-game").addEventListener("click", resumeGame);
 };
 
-startGame();
+startGame(size, mines);
