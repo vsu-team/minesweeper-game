@@ -115,8 +115,8 @@ nav .user-input input {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 51vw;
-    height: 75vh;
+    width: 980px;
+    height: 740px;
 }
 
 .container {
@@ -347,13 +347,15 @@ label {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .option {
-    width: 23vw;
-    height: 33vh;
+    width: 431px;
+    height: 310px;
     font-size: 38px;
-    text-align: center;;
+    text-align: center;
     color: black;
     background: #CBEEFF;
     padding: 20px;
