@@ -115,8 +115,8 @@ nav .user-input input {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 980px;
-    height: 740px;
+    width: 51vw;
+    height: 75vh;
 }
 
 .container {
@@ -347,13 +347,11 @@ label {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .option {
-    width: 431px;
-    height: 310px;
+    width: 44vh;
+    height: 33vh;
     font-size: 38px;
     text-align: center;;
     color: black;
@@ -361,8 +359,6 @@ label {
     padding: 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .option:hover {
