@@ -9,20 +9,38 @@
 </head>
 
 <body>
-    <h1>Minesweeper</h1>
-    <button id="dark-mode-btn" onclick="darkMode()">🌙</button>
-    <div class="modal" id="modal">
+    <nav>
+        <div class="logo">
+            <img src="https://s3-alpha-sig.figma.com/img/8097/14cc/3b3f40776bc57003cf0000faa6304712?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ay~-woxyZfYcH04TK5OGO663C68~oQm1MbDMZEIzrT9yWzQj2Q~aIBdySlVm4q8im6DGnMwFSxR1COGEbqOkrNrR8O6Fi2iNDemGDPdu7-Q8QVXmeYRUMJLfsRXLHOL1qug2uifVyJHCITgz1DWdeaatxKewkoOrb-s9Y4s-wby4jqFtTjti~0uLup2ap0x7GDnkCD7RAcXQx66330wA9EkLYkRbhasvYgxaxJrtuWz9mJU~JEvC0zByA3uOOBc7x49PoWs0B2awyPWRzKbnHMpX-~SveZNYdrlW87~k9c6vRkmWX4xyDzqvTOSBO3WLXq67tuB-iTooVUlyCNShGw__"
+                alt="Minesweeper Logo">
+        </div>
+
+        <!-- Game Title -->
+        <div class="title">
+            MINES
+        </div>
+        <div style="display: flex; gap: 5px;">
+            <!-- Username Input -->
+            <div class="user-input">
+                <label for="username" style="color:black; margin-right: 10px;"></label>
+                <input type="text" id="username" oninput="updateUsername()">
+            </div>
+            <button id="dark-mode-btn" onclick="darkMode()">🌙</button>
+        </div>
+    </nav>
+
+    <div class="modal">
         <div class="option-container" id="option-container">
             <div class="option-grid">
-                <div class="option" onclick="selectGrid(8,10)">8 x 8<br>10 mines</div>
-                <div class="option" onclick="selectGrid(16,40)">16 x 16<br>40 mines</div>
-                <div class="option" onclick="selectGrid(20,60)">20 x 20<br>60 mines</div>
+                <div class="option" id="option-1" onclick="selectGrid(8,10, event)">8 x 8<br>10 mines</div>
+                <div class="option" id="option-2" onclick="selectGrid(16,40, event)">16 x 16<br>40 mines</div>
+                <div class="option" id="option-3" onclick="selectGrid(20,60, event)">20 x 20<br>60 mines</div>
                 <div class="option" onclick="customGrid()">? <br>custom</div>
             </div>
         </div>
     </div>
-    <div class="modal" id="modal">
-        <div class="container" id="container">
+    <div class="modal">
+        <div class="container" id="custom-container">
             <div class="input-group">
                 <label for="size">Size</label>
                 <div class="number-input">
@@ -39,11 +57,10 @@
                     <button onclick="changeValue('mines', 1)">+</button>
                 </div>
             </div>
-
+            <button class="btn play" id="start-game">Play Game</button>
             <button class="btn cancel" onclick="cancelCustom()">Cancel</button>
         </div>
     </div>
-    <button class="btn play" id="start-game">Play Game</button>
     <div class="main">
         <div class="game" id="game">
             <div class="grid" id="my-grid"></div>
@@ -53,7 +70,7 @@
                 ⏳ Timer: <span id="timer">0</span> sec
             </div>
             <div>
-                🚩 Pins: <span id="pinCount">0</span>
+                🚩 Pins: <span id="pinCount"></span>
             </div>
             <div class="button-container">
                 <button id="pause-game">Pause Game</button>
