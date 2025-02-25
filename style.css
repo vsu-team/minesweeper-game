@@ -521,4 +521,13 @@ label {
     transform: scale(1.1);
 }
 
-
+.button-container > button {
+    width: 232px;
+    height: 58px;
+    border-radius: 21px;
+    background-color: #d9d9d9;
+    font-size: 30px;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+}
