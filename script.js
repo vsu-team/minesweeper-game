@@ -10,7 +10,6 @@ function changeValue(id, change) {
 // Function to update the username when the input changes
 function updateUsername() {
   const username = document.getElementById("username").value;
-  console.log("Username: " + username);
 }
 
 // Start timer when the first click happens
@@ -138,10 +137,8 @@ const checkWin = (revealedCells, size, mines, timer, win) => {
 
 function showMessage(timer, win) {
   let username = document.getElementById("username").value;
-  // Create congratulation message
   let messageBox = document.createElement("div");
   messageBox.id = "congratulation-message";
-  console.log("state", win.state);
   if (win.state === true) {
     messageBox.textContent = `🎉 Congrats ${username}! You won in ${timer.second} seconds!`;
   } else {
@@ -452,12 +449,6 @@ const darkMode = () => {
   }
 };
 
-// const restartGame = (size, mines) => {
-//   document.getElementById("my-grid").innerHTML = "";
-//   startGame(size, mines);
-// };
-
-//start game function
 const startGame = (size, mines) => {
   document.getElementById("option-container").style.display = "none";
   document.getElementById("custom-container").style.display = "none";
@@ -466,8 +457,6 @@ const startGame = (size, mines) => {
   const flagIndexes = [];
   let timer = { second: 0, id: null };
   let flagCount = { count: 0 };
-  console.log(timer.second);
-  // document.getElementById("timer").textContent = timer.second;
   document.getElementById("size").addEventListener("input", function () {
     size = parseInt(document.getElementById("size").value);
   });
