@@ -7,6 +7,12 @@ function changeValue(id, change) {
   customGrid();
 }
 
+// Function to update the username when the input changes
+function updateUsername() {
+  const username = document.getElementById("username").value;
+  console.log("Username: " + username);
+}
+
 // Start timer when the first click happens
 function startTimer(timer) {
   timer.id = setInterval(() => {
@@ -23,13 +29,13 @@ function stopTimer(timer) {
 function customGrid() {
   document.getElementById("option-container").style.display = "none";
   document.getElementById("custom-container").style.display = "block";
-  let size = parseInt(document.getElementById("size").value); 
-  let mines = parseInt(document.getElementById("mines").value); 
+  let size = parseInt(document.getElementById("size").value);
+  let mines = parseInt(document.getElementById("mines").value);
   document.getElementById("size").addEventListener("input", () => {
-    size = parseInt(document.getElementById("size").value); 
+    size = parseInt(document.getElementById("size").value);
   });
   document.getElementById("mines").addEventListener("input", () => {
-    mines = parseInt(document.getElementById("mines").value); 
+    mines = parseInt(document.getElementById("mines").value);
   });
   if (isNaN(size)) {
     changeValue("size", 5);
@@ -118,9 +124,38 @@ const displayIncorrectFlags = (
 };
 
 // Check if the user has won
-const checkWin = (revealedCells, size, mines) => {
-  return revealedCells === size * size - mines;
+const checkWin = (revealedCells, size, mines, timer, win) => {
+  if (revealedCells === size * size - mines) {
+    showCongratulation(timer, win);
+    return true;
+  }
+  return false;
 };
+
+function showCongratulation(timer, win) {
+  let username = document.getElementById("username").value;
+  // Create congratulation message
+  let messageBox = document.createElement("div");
+  messageBox.id = "congratulation-message";
+  if(win.state){
+    messageBox.textContent = `🎉 Congrate ${username}! You won in ${timer.second} seconds!`;
+  } else {
+    messageBox.textContent = `😭 Game over ${username}! You lost in ${timer.second} seconds!`;
+  }
+  document.body.appendChild(messageBox);
+
+  setTimeout(() => {
+    messageBox.classList.add("show");
+  }, 100);
+
+  // Hide after 5 seconds
+  setTimeout(() => {
+    messageBox.classList.remove("show");
+    setTimeout(() => {
+      messageBox.remove();
+    }, 500);
+  }, 5000);
+}
 
 const minesGeneration = (size, mines, minesMatrix, rowIndex, colIndex) => {
   let i = 0;
@@ -232,7 +267,7 @@ const openCells = (
   win
 ) => {
   let revealedCells = { count: 0 };
-  let timer = { second: 0, id: null }; 
+  let timer = { second: 0, id: null };
   let minesIndexes = [];
   for (let index = 0; index < size * size; index++) {
     allGridItems[index].addEventListener("click", () => {
@@ -261,10 +296,10 @@ const openCells = (
         allGridItems[index].classList.add("bomb-click");
         //revealing all the bombs present
         revealAllBombs(allGridItems, minesIndexes, size, flagIndexes);
-        alert("Game Over!");
+        showCongratulation(timer, win);
         stopTimer(timer);
-        document.getElementById("pause-game").disabled = true; 
-        document.getElementById("resume-game").disabled = true; 
+        document.getElementById("pause-game").disabled = true;
+        document.getElementById("resume-game").disabled = true;
         //controling the cell which is 0(empty)
       } else if (
         minesMatrix[rowIndex][colIndex] === 0 &&
@@ -288,21 +323,27 @@ const openCells = (
         visited[rowIndex][colIndex] = 1;
         revealedCells.count++;
       }
-      if (checkWin(revealedCells.count, size, mines)) {
+      if (checkWin(revealedCells.count, size, mines, timer, win)) {
         win.state = true;
-        alert("You win!");
         stopTimer(timer);
         document.getElementById("pinCount").textContent = `${mines}/${mines}`;
         disableGrid();
-        document.getElementById("pause-game").disabled = true; 
-        document.getElementById("resume-game").disabled = true; 
+        document.getElementById("pause-game").disabled = true;
+        document.getElementById("resume-game").disabled = true;
       }
     });
   }
 };
 
 //state controlling of right click
-const flagCell = (size, allGridItems, visited, first_click, flagIndexes, mines) => {
+const flagCell = (
+  size,
+  allGridItems,
+  visited,
+  first_click,
+  flagIndexes,
+  mines
+) => {
   let flagCount = 0;
   for (let i = 0; i < size; ++i) {
     for (let j = 0; j < size; ++j) {
@@ -314,7 +355,8 @@ const flagCell = (size, allGridItems, visited, first_click, flagIndexes, mines) 
           if (visited[i][j] !== 1 && first_click.click === false) {
             if (
               allGridItems[allGridItems_index].getAttribute("data-state") ===
-              "hidden" && flagCount<mines
+                "hidden" &&
+              flagCount < mines
             ) {
               flagCount++;
               allGridItems[allGridItems_index].textContent = "🚩";
@@ -345,7 +387,9 @@ const flagCell = (size, allGridItems, visited, first_click, flagIndexes, mines) 
               );
             }
           }
-          document.getElementById("pinCount").textContent = `${flagCount}/${mines}`;
+          document.getElementById(
+            "pinCount"
+          ).textContent = `${flagCount}/${mines}`;
         }
       );
     }
@@ -409,11 +453,11 @@ const startGame = (size, mines) => {
 
   const pauseGame = () => {
     document.getElementById("pause-game").disabled = true;
-    document.getElementById("resume-game").disabled = false; 
+    document.getElementById("resume-game").disabled = false;
     gameActive = false;
     //clearInterval(timer); // Stop the timer
     const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
-    allGridItems.forEach((item) => (item.style.pointerEvents = "none")); 
+    allGridItems.forEach((item) => (item.style.pointerEvents = "none"));
   };
   const resumeGame = () => {
     document.getElementById("pause-game").disabled = false;
@@ -421,7 +465,7 @@ const startGame = (size, mines) => {
     gameActive = true;
     //startTimer(); // Restart the timer
     const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
-    allGridItems.forEach((item) => (item.style.pointerEvents = "auto")); 
+    allGridItems.forEach((item) => (item.style.pointerEvents = "auto"));
   };
   document.getElementById("pause-game").addEventListener("click", pauseGame);
   document.getElementById("resume-game").addEventListener("click", resumeGame);
