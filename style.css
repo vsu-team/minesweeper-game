@@ -94,6 +94,21 @@ nav .user-input input {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+.dark-mode .option{
+    background: #010e07;
+    color: white;
+}
+
+.dark-mode .option:hover{
+    background: #FDBE55;
+}
+
+.dark-mode #congratulation-message{
+    background: rgba(0, 0, 0, 0.9);
+    color: #ffcc00;
+}
+
+
 .dark-mode .number-input {
     background-color: white;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
@@ -282,6 +297,7 @@ label {
     width: 28px;
     height: 28px;
     font-size: 24px;
+    font-weight: bold;
     text-align: center;
     cursor: pointer;
     border-radius: 3px;
@@ -289,21 +305,21 @@ label {
 }
 
 .small{
-    width: 80px;
-    height: 80px;
-    font-size: 70px;
+    width: 48px;
+    height: 48px;
+    font-size: 35px;
 }
 
 .middle{
-    width: 50px;
-    height: 50px;
-    font-size: 40px;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
 }
 
 .big{
-    width: 35px;
-    height: 35px;
-    font-size: 30px;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
 }
 
 .grid>div {
@@ -452,6 +468,7 @@ label {
     right: 0;
     background: rgba(241, 235, 235, 0.9);
     color: #ffcc00;
+    /* color: #ff0000; */
     font-size: 50px;
     font-weight: bold;
     border-radius: 20px;

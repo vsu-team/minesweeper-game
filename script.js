@@ -43,6 +43,9 @@ function customGrid() {
   } else if (size < 5) {
     changeValue("size", 5 - size);
     return;
+  } else if(size>40){
+    changeValue('size',40-size);
+    return;
   }
   const minMines = Math.ceil(size * size * 0.1);
   const maxMines = Math.floor(size * size * 0.5);
@@ -140,7 +143,7 @@ function showMessage(timer, win) {
   messageBox.id = "congratulation-message";
   console.log("state", win.state);
   if (win.state === true) {
-    messageBox.textContent = `🎉 Congrate ${username}! You won in ${timer.second} seconds!`;
+    messageBox.textContent = `🎉 Congrats ${username}! You won in ${timer.second} seconds!`;
   } else {
     messageBox.textContent = `😭 Game over ${username}! You lost in ${timer.second} seconds!`;
   }
