@@ -1,12 +1,15 @@
 # Minesweeper game
-Minesweeper is a logic puzzle video game genre generally played on personal computers. The game features a grid of clickable tiles, with hidden "mines" scattered throughout the board.
+**Minesweeper** is a timeless logic puzzle game that challenges players to strategically uncover tiles while avoiding hidden mines. With a mix of logical deduction and a bit of luck, players must reveal safe cells and mark dangerous ones to clear the board without triggering an explosion.
+
+As part of a practical training program at **Vanadzor State University**, organized in collaboration with **Zealous**, fourth-year students embarked on an exciting web development project. Their mission? To bring this iconic game to life using **HTML**, **CSS**, and **JavaScript**. 
+Through this project, students honed their skills in **frontend development**, **game logic implementation**, and **interactive UI design**, creating a fully functional and engaging Minesweeper experience for the web.
 ## 1.Project structure
 The game consists of multiple sections.
-- Navbar: Displays the logo, the game title and allows user to input its username
-- Options section: Provides grid selection.
-- Custom option section: The option section is changed to this section after clicking the custom variant. Allows the user to define a custom grid size and mine count.
-- Game Section: The main game board where gameplay occurs.
-- Result Section: Displays the win/lose message and options to restart or change difficulty.
+- *Navbar*: Displays the logo, the game title and allows user to input its username
+- *Options section*: Provides grid selection.
+- *Custom option section*: The option section is changed to this section after clicking the custom variant. Allows the user to define a custom grid size and mine count.
+- *Game Section*: The main game board where gameplay occurs.
+- *Result Section*: Displays the win/lose message and options to restart or change difficulty.
 
 
 ## 2.Sections breakdown
