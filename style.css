@@ -73,6 +73,40 @@ nav .user-input input {
     color: #e0e0e0;
 }
 
+
+
+.dark-mode .click-number-1 {
+    background-color: #E4E3EB !important;
+}
+
+.dark-mode .click-number-2 {
+    background-color: #8797CA !important;
+}
+
+.dark-mode .click-number-3 {
+    background-color: #666EBE !important;
+}
+
+.dark-mode .click-number-4 {
+    background-color: #4763A8 !important;
+}
+
+.dark-mode .click-number-5 {
+    background-color: #1A3985 !important;
+}
+
+.dark-mode .click-number-6 {
+    background-color: #02267D !important;
+}
+
+.dark-mode .click-number-7 {
+    background-color: #061C41 !important;
+}
+
+.dark-mode .click-number-8 {
+    background-color: #071021 !important;
+}
+
 .dark-mode nav .title {
     color: white;
 }
@@ -94,16 +128,16 @@ nav .user-input input {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-.dark-mode .option{
+.dark-mode .option {
     background: #010e07;
     color: white;
 }
 
-.dark-mode .option:hover{
+.dark-mode .option:hover {
     background: #FDBE55;
 }
 
-.dark-mode #congratulation-message{
+.dark-mode #congratulation-message {
     background: rgba(0, 0, 0, 0.9);
     color: #ffcc00;
 }
@@ -304,19 +338,19 @@ label {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
-.small{
+.small {
     width: 48px;
     height: 48px;
     font-size: 35px;
 }
 
-.middle{
+.middle {
     width: 30px;
     height: 30px;
     font-size: 25px;
 }
 
-.big{
+.big {
     width: 25px;
     height: 25px;
     font-size: 18px;
@@ -382,7 +416,7 @@ label {
 }
 
 .click-color {
-    background-color: lightgrey !important;
+    background-color: rgb(162, 159, 159) !important;
 }
 
 
@@ -452,7 +486,7 @@ label {
 }
 
 .option:hover {
-    background: deepskyblue;
+    background: rgb(130, 219, 249);
 }
 
 /* Congratulation message container */
