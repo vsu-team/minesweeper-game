@@ -34,7 +34,7 @@
         <div class="option-container" id="option-container">
             <div class="option-grid">
                 <div class="option" id="option-1" onclick="selectGrid(8,10, event)"><p>8 x 8<br><span>10 mines</span></p></div>
-                <div class="option" id="option-2" onclick="selectGrid(15,25, event)"><p>15 x 15<br><span>30 mines</span></p></div>
+                <div class="option" id="option-2" onclick="selectGrid(15,25, event)"><p>15 x 15<br><span>25 mines</span></p></div>
                 <div class="option" id="option-3" onclick="selectGrid(20,60, event)"><p>20 x 20<br><span>60 mines</span></p></div>
                 <div class="option" onclick="customGrid()"><p>?<br><span>custom</span></p></div>
             </div>
@@ -69,7 +69,7 @@
             </p>
         </div>
     </div>
-    <div class="main">
+    <div class="main" id="main">
         <div class="game" id="game">
             <div class="grid" id="my-grid"></div>
         </div>
@@ -81,8 +81,9 @@
                 <img src="images/flag-menu.png" alt="flag-menu" class="menu-img"> Pins: <span id="pinCount"></span>
             </div>
             <div class="button-container">
-                <button id="pause-game">Pause Game</button>
-                <button id="resume-game">Resume Game</button>
+                <button id="pause-resume">Pause</button>
+                <button id="reset">Reset</button>
+                <button id="restart">Restart</button>
             </div>
         </div>
     </div>
