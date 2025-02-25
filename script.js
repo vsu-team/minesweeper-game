@@ -43,8 +43,8 @@ function customGrid() {
   } else if (size < 5) {
     changeValue("size", 5 - size);
     return;
-  } else if(size>40){
-    changeValue('size',40-size);
+  } else if (size > 30) {
+    changeValue("size", 30 - size);
     return;
   }
   const minMines = Math.ceil(size * size * 0.1);
