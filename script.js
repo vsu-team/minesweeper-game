@@ -126,18 +126,20 @@ const displayIncorrectFlags = (
 // Check if the user has won
 const checkWin = (revealedCells, size, mines, timer, win) => {
   if (revealedCells === size * size - mines) {
-    showCongratulation(timer, win);
+    win.state = true;
+    showMessage(timer, win);
     return true;
   }
   return false;
 };
 
-function showCongratulation(timer, win) {
+function showMessage(timer, win) {
   let username = document.getElementById("username").value;
   // Create congratulation message
   let messageBox = document.createElement("div");
   messageBox.id = "congratulation-message";
-  if(win.state){
+  console.log("state", win.state);
+  if (win.state === true) {
     messageBox.textContent = `🎉 Congrate ${username}! You won in ${timer.second} seconds!`;
   } else {
     messageBox.textContent = `😭 Game over ${username}! You lost in ${timer.second} seconds!`;
@@ -296,7 +298,7 @@ const openCells = (
         allGridItems[index].classList.add("bomb-click");
         //revealing all the bombs present
         revealAllBombs(allGridItems, minesIndexes, size, flagIndexes);
-        showCongratulation(timer, win);
+        showMessage(timer, win);
         stopTimer(timer);
         document.getElementById("pause-game").disabled = true;
         document.getElementById("resume-game").disabled = true;
@@ -324,7 +326,7 @@ const openCells = (
         revealedCells.count++;
       }
       if (checkWin(revealedCells.count, size, mines, timer, win)) {
-        win.state = true;
+        // win.state = true;
         stopTimer(timer);
         document.getElementById("pinCount").textContent = `${mines}/${mines}`;
         disableGrid();

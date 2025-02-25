@@ -289,10 +289,10 @@ label {
 .main {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     flex-wrap: wrap;
     width: 100%;
-    gap: 10px;
+    gap: 35%;
 }
 
 .game {
