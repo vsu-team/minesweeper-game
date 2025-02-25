@@ -73,6 +73,10 @@ nav .user-input input {
     color: #e0e0e0;
 }
 
+.dark-mode nav .title {
+    color: white;
+}
+
 .dark-mode .grid {
     border: 1px solid white;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
@@ -116,16 +120,17 @@ nav .user-input input {
 }
 
 .container {
+    margin-top: 5%;
     display: none;
-    font-size: 60px;
+    font-size: 45px;
     padding: 20px;
     background: white;
     color: black;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 870px;
-    height: 500px;
+    width: 35%;
+    height: 80%;
 }
 
 .input-group {
@@ -133,7 +138,7 @@ nav .user-input input {
     align-items: center;
     justify-content: center;
     gap: 5px;
-    /* margin-bottom: 20px; */
+    margin-bottom: 30px;
 }
 
 .input-group button {
@@ -154,11 +159,12 @@ nav .user-input input {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 .note {
     font-size: 25px;
     color: #555;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 100px;
 }
 
 label {
@@ -205,9 +211,9 @@ label {
 .btn.play {
     background: #2d8f2d;
     color: white;
-    width: 30vw;
-    font-size: 60px;
-    border-radius: 10px;
+    width: 50%;
+    font-size: 3vh;
+    border-radius: 25px;
 }
 
 .btn.play:hover {
@@ -217,13 +223,14 @@ label {
 .btn.cancel {
     background: #e0e0e0;
     color: black;
-    width: 30vw;
-    font-size: 50px;
+    width: 50%;
+    font-size: 3vh;
     border-radius: 25px;
 }
 
 .setting {
     margin: 30px 100px;
+    margin-bottom: 20px;
 }
 
 .btn.cancel:hover {
@@ -235,8 +242,8 @@ label {
     padding: 0.6vh;
     display: none;
     width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -281,6 +288,24 @@ label {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
+.small{
+    width: 80px;
+    height: 80px;
+    font-size: 70px;
+}
+
+.middle{
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+}
+
+.big{
+    width: 35px;
+    height: 35px;
+    font-size: 30px;
+}
+
 .grid>div {
     display: flex;
     gap: 0.9px;
@@ -289,10 +314,10 @@ label {
 .main {
     margin-top: 20px;
     display: flex;
-    /* justify-content: center; */
+    justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
-    gap: 35%;
+    gap: 2%;
 }
 
 .game {
@@ -303,19 +328,19 @@ label {
 
 .menu {
     display: none;
-    font-size: 30px;
-    width: 420px;
+    font-size: 2vh;
+    width: 15%;
+    height: 15%;
     background-color: white;
     color: black;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    height: 205px;
 }
 
-.menu-img{
-    width: 30px;
-    height: 30px;
+.menu-img {
+    width: 10%;
+    height: 10%;
 }
 
 .flag {
@@ -400,13 +425,13 @@ label {
     cursor: pointer;
 }
 
-.option>p{
+.option>p {
     font-size: 38px;
     margin-top: 25%;
     margin-bottom: 25%;
 }
 
-.option>p>span{
+.option>p>span {
     font-size: 25px;
 }
 
@@ -429,8 +454,9 @@ label {
     color: #ffcc00;
     font-size: 50px;
     font-weight: bold;
-    border-radius: 20px; /* Soft rounded corners */
-    box-shadow: 0px 10px 25px rgba(255, 200, 100, 0.7); 
+    border-radius: 20px;
+    /* Soft rounded corners */
+    box-shadow: 0px 10px 25px rgba(255, 200, 100, 0.7);
     opacity: 0;
     transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
     display: flex;

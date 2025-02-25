@@ -438,6 +438,19 @@ const startGame = (size, mines) => {
   //grid visually creation
   gridCreation(size);
   const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
+  if (size <= 10) {
+    allGridItems.forEach((item) => {
+      item.classList.add("small");
+    });
+  } else if (size <= 15) {
+    allGridItems.forEach((item) => {
+      item.classList.add("middle");
+    });
+  } else {
+    allGridItems.forEach((item) => {
+      item.classList.add("big");
+    });
+  }
 
   const first_click = { click: true };
 
