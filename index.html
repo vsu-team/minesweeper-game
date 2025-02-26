@@ -11,9 +11,8 @@
 
 <body>
     <nav>
-        <div class="logo">
-            <img src="images/ikm-4-icon.png"
-                alt="Minesweeper Logo">
+        <div class="logo" id="logo">
+            <img src="images/ikm-4-icon.png" alt="Minesweeper Logo">
         </div>
 
         <!-- Game Title -->
@@ -33,10 +32,18 @@
     <div class="modal">
         <div class="option-container" id="option-container">
             <div class="option-grid">
-                <div class="option" id="option-1" onclick="selectGrid(8,10, event)"><p>8 x 8<br><span>10 mines</span></p></div>
-                <div class="option" id="option-2" onclick="selectGrid(15,25, event)"><p>15 x 15<br><span>25 mines</span></p></div>
-                <div class="option" id="option-3" onclick="selectGrid(20,60, event)"><p>20 x 20<br><span>60 mines</span></p></div>
-                <div class="option" onclick="customGrid()"><p>?<br><span>custom</span></p></div>
+                <div class="option" id="option-1" onclick="selectGrid(8,10, event)">
+                    <p>8 x 8<br><span>10 mines</span></p>
+                </div>
+                <div class="option" id="option-2" onclick="selectGrid(15,25, event)">
+                    <p>15 x 15<br><span>25 mines</span></p>
+                </div>
+                <div class="option" id="option-3" onclick="selectGrid(20,60, event)">
+                    <p>20 x 20<br><span>60 mines</span></p>
+                </div>
+                <div class="option" onclick="customGrid()">
+                    <p>?<br><span>custom</span></p>
+                </div>
             </div>
         </div>
     </div>
@@ -64,7 +71,7 @@
             <button class="btn play" id="start-game">Play Game</button>
             <button class="btn cancel" onclick="cancelCustom()">Cancel</button>
             <p class="note">
-                * Mines must be at least 10% and no more than 50% of the grid size.  
+                * Mines must be at least 10% and no more than 50% of the grid size.
                 Values outside this range will adjust automatically.
             </p>
         </div>
@@ -75,7 +82,7 @@
         </div>
         <div class="menu" id="menu">
             <div>
-                <img src="images/timer.png" alt="timer" class="menu-img">   Timer: <span id="timer">0</span> sec
+                <img src="images/timer.png" alt="timer" class="menu-img"> Timer: <span id="timer">0</span> sec
             </div>
             <div>
                 <img src="images/flag-menu.png" alt="flag-menu" class="menu-img"> Pins: <span id="pinCount"></span>

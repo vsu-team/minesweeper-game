@@ -23,19 +23,34 @@ function startTimer(timer) {
 // Function to stop the timer when the game ends
 function stopTimer(timer) {
   clearInterval(timer.id);
+  timer.id = null; // Reset the timer ID
 }
 
 function customGrid() {
+  document.getElementById("logo").addEventListener("click", function () {
+    let messageBox = document.getElementById("congratulation-message");
+
+    if (messageBox) {
+      messageBox.remove();
+    }
+    document.getElementById("option-container").style.display = "block";
+    document.getElementById("custom-container").style.display = "none";
+    document.getElementById("main").style.display = "none";
+  });
   document.getElementById("option-container").style.display = "none";
   document.getElementById("custom-container").style.display = "block";
   let size = parseInt(document.getElementById("size").value);
+
   let mines = parseInt(document.getElementById("mines").value);
+
   document.getElementById("size").addEventListener("input", () => {
     size = parseInt(document.getElementById("size").value);
   });
+
   document.getElementById("mines").addEventListener("input", () => {
     mines = parseInt(document.getElementById("mines").value);
   });
+
   if (isNaN(size)) {
     changeValue("size", 5);
     return;
@@ -151,12 +166,12 @@ function showMessage(timer, win) {
   }, 100);
 
   // Hide after 5 seconds
-  setTimeout(() => {
-    messageBox.classList.remove("show");
-    setTimeout(() => {
-      messageBox.remove();
-    }, 500);
-  }, 5000);
+  // setTimeout(() => {
+  //   messageBox.classList.remove("show");
+  //   setTimeout(() => {
+  //     messageBox.remove();
+  //   }, 500);
+  // }, 5000);
 }
 
 const minesGeneration = (size, mines, minesMatrix, rowIndex, colIndex) => {
@@ -238,7 +253,9 @@ const zeroReveal = (
         }
       });
       flagCount.count--;
-      document.getElementById("pinCount").textContent = `${flagCount.count}/${mines}`;
+      document.getElementById(
+        "pinCount"
+      ).textContent = `${flagCount.count}/${mines}`;
     }
     //adjacent cells check
     for (let i = x - 1; i <= x + 1; i++) {
@@ -271,7 +288,9 @@ const zeroReveal = (
                 }
               });
               flagCount.count--;
-              document.getElementById("pinCount").textContent = `${flagCount.count}/${mines}`;
+              document.getElementById(
+                "pinCount"
+              ).textContent = `${flagCount.count}/${mines}`;
             }
             revealedCells.count++;
           }
@@ -325,7 +344,7 @@ const openCells = (
         //revealing all the bombs present
         revealAllBombs(allGridItems, minesIndexes, size, flagIndexes);
         showMessage(timer, win);
-        stopTimer(timer); 
+        stopTimer(timer);
         document.getElementById("pause-resume").disabled = true;
         //controling the cell which is 0(empty)
       } else if (
@@ -358,8 +377,9 @@ const openCells = (
             }
           });
           flagCount.count--;
-          document.getElementById("pinCount").textContent = `${flagCount.count}/${mines}`;
-
+          document.getElementById(
+            "pinCount"
+          ).textContent = `${flagCount.count}/${mines}`;
         }
         revealedCells.count++;
       }
@@ -452,10 +472,14 @@ const darkMode = () => {
 };
 
 const startGame = (size, mines) => {
+  document
+    .getElementById("pause-resume")
+    .replaceWith(document.getElementById("pause-resume").cloneNode(true));
   document.getElementById("option-container").style.display = "none";
   document.getElementById("custom-container").style.display = "none";
   document.getElementById("pause-resume").disabled = true;
   document.getElementById("main").style.display = "flex";
+  document.getElementById("username").setAttribute("readonly", true);
   const flagIndexes = [];
   let timer = { second: 0, id: null };
   let flagCount = { count: 0 };
@@ -537,13 +561,49 @@ const startGame = (size, mines) => {
   document.getElementById("reset").addEventListener("click", function () {
     stopTimer(timer);
     document.getElementById("timer").textContent = 0;
+    let messageBox = document.getElementById("congratulation-message");
+    if (messageBox) {
+      messageBox.remove();
+    }
     startGame(size, mines);
   });
 
+  document.getElementById("logo").addEventListener("click", function () {
+    document.getElementById("size").value = 0;
+    document.getElementById("mines").value = 0;
+    let messageBox = document.getElementById("congratulation-message");
+    if (messageBox) {
+      messageBox.remove();
+    }
+    document.getElementById("option-container").style.display = "block";
+    document.getElementById("custom-container").style.display = "none";
+    document.getElementById("main").style.display = "none";
+    stopTimer(timer);
+    timer.second = 0;
+    timer.id = null;
+    document.getElementById("timer").textContent = timer.second;
+  });
+
   document.getElementById("restart").addEventListener("click", function () {
+    document.getElementById("size").value = 0;
+    document.getElementById("mines").value = 0;
     document.getElementById("main").style.display = "none";
     document.getElementById("option-container").style.display = "block";
+
+    // Stop and reset timer properly
     stopTimer(timer);
+    timer.second = 0;
+    timer.id = null; // Reset the timer ID
     document.getElementById("timer").textContent = 0;
+
+    // Remove congratulation message
+    let messageBox = document.getElementById("congratulation-message");
+    if (messageBox) {
+      messageBox.remove();
+    }
+
+    // Reset username
+    document.getElementById("username").value = "";
+    document.getElementById("username").removeAttribute("readonly");
   });
 };
