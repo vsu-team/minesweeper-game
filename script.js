@@ -325,7 +325,8 @@ const openCells = (
         //revealing all the bombs present
         revealAllBombs(allGridItems, minesIndexes, size, flagIndexes);
         showMessage(timer, win);
-        stopTimer(timer);
+        stopTimer(timer); 
+        document.getElementById("pause-resume").disabled = true;
         //controling the cell which is 0(empty)
       } else if (
         minesMatrix[rowIndex][colIndex] === 0 &&
@@ -365,6 +366,7 @@ const openCells = (
       if (checkWin(revealedCells.count, size, mines, timer, win)) {
         // win.state = true;
         stopTimer(timer);
+        document.getElementById("pause-resume").disabled = true;
         document.getElementById("pinCount").textContent = `${mines}/${mines}`;
         disableGrid();
       }
