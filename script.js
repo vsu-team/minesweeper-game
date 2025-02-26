@@ -7,11 +7,6 @@ function changeValue(id, change) {
   customGrid();
 }
 
-// Function to update the username when the input changes
-function updateUsername() {
-  const username = document.getElementById("username").value;
-}
-
 // Start timer when the first click happens
 function startTimer(timer) {
   timer.id = setInterval(() => {
@@ -83,7 +78,6 @@ function cancelCustom() {
   document.getElementById("size").value = 0;
   document.getElementById("mines").value = 0;
 }
-
 function selectGrid(rows, mines) {
   startGame(rows, mines);
 }
