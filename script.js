@@ -32,14 +32,14 @@ function validateUsername() {
   let errorMessage = "Please enter your username";
 
   if (!username.value.trim()) {
-      username.value = ""; // Հեռացնում ենք նախկին արժեքը
-      username.placeholder = errorMessage; // Տեղադրում ենք placeholder-ի մեջ
-      username.style.borderColor = "red"; // Կարմիր սահման
+      username.value = "";
+      username.placeholder = errorMessage; 
+      username.style.borderColor = "red"; 
       return false;
   }
   
-  username.placeholder = ""; // Վերականգնում ենք 
-  username.style.borderColor = ""; // Վերականգնում ենք
+  username.placeholder = ""; 
+  username.style.borderColor = ""; 
   return true;
 }
 
@@ -207,14 +207,6 @@ function showMessage(timer, win) {
   setTimeout(() => {
     messageBox.classList.add("show");
   }, 100);
-
-  // Hide after 5 seconds
-  // setTimeout(() => {
-  //   messageBox.classList.remove("show");
-  //   setTimeout(() => {
-  //     messageBox.remove();
-  //   }, 500);
-  // }, 5000);
 }
 
 const minesGeneration = (size, mines, minesMatrix, rowIndex, colIndex) => {
@@ -525,9 +517,7 @@ const startGame = (size, mines) => {
   document.getElementById("username").setAttribute("readonly", true);
   const flagIndexes = [];
   let timer = { second: 0, id: null };
-  //
   document.getElementById("timer").textContent = 0;
-  //
   let flagCount = { count: 0 };
   document.getElementById("size").addEventListener("input", function () {
     size = parseInt(document.getElementById("size").value);
@@ -588,11 +578,9 @@ const startGame = (size, mines) => {
     flagCount
   );
 
-  //
   let pauseButton = document.getElementById("pause-resume");
   pauseButton.replaceWith(pauseButton.cloneNode(true));
   pauseButton = document.getElementById("pause-resume");
-  //
 
   pauseButton.addEventListener("click", function () {
     const button = document.getElementById("pause-resume");
@@ -609,11 +597,9 @@ const startGame = (size, mines) => {
     }
   });
 
-  //
   let resetButton = document.getElementById("reset");
   resetButton.replaceWith(resetButton.cloneNode(true));
   resetButton = document.getElementById("reset");
-  //
 
   resetButton.addEventListener("click", function () {
     stopTimer(timer);
@@ -644,11 +630,9 @@ const startGame = (size, mines) => {
     document.getElementById("timer").textContent = timer.second;
   });
 
-  //
   let restartButton = document.getElementById("restart");
   restartButton.replaceWith(restartButton.cloneNode(true));
   restartButton = document.getElementById("restart");
-  //
 
   restartButton.addEventListener("click", function () {
     document.getElementById("size").value = 5;
