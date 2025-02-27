@@ -199,8 +199,12 @@ function showMessage(timer, win) {
   messageBox.id = "congratulation-message";
   if (win.state === true) {
     messageBox.textContent = `🎉 Congrats ${username}! You won in ${timer.second} seconds!`;
+    const gameWinMusic = document.getElementById('game-win-music');
+    gameWinMusic.play();
   } else {
     messageBox.textContent = `😭 Game over ${username}! You lost in ${timer.second} seconds!`;
+    const gameOverMusic = document.getElementById('game-over-music');
+    gameOverMusic.play();
   }
   document.body.appendChild(messageBox);
 
