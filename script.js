@@ -31,6 +31,11 @@ function validateUsername() {
   let username = document.getElementById("username");
   let errorMessage = "Please enter your username";
 
+  username.addEventListener("input", function () {
+    username.style.boxShadow = ""; 
+    username.style.borderColor = "black"; 
+  });
+
   if (!username.value.trim()) {
       username.value = "";
       username.placeholder = errorMessage; 
