@@ -35,11 +35,14 @@ function validateUsername() {
       username.value = "";
       username.placeholder = errorMessage; 
       username.style.borderColor = "red"; 
+      username.focus();
+      username.style.boxShadow = "0 0 10px red";
       return false;
   }
   
   username.placeholder = ""; 
   username.style.borderColor = ""; 
+  username.style.boxShadow = "";
   return true;
 }
 

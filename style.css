@@ -479,8 +479,6 @@ label {
 }
 
 .option {
-    /* width: 431px; */
-    /* height: 90%; */
     text-align: center;
     color: black;
     background: #CBEEFF;
@@ -558,6 +556,7 @@ label {
 }
 
 #username::placeholder {
-    font-size: 10px; /* Փոքրացնում ենք placeholder-ի տեքստը */
+    font-size: 10px; 
     color: red;
+    
 }
