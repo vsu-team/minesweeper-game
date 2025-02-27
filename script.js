@@ -1,10 +1,46 @@
-function changeValue(id, change) {
-  let input = document.getElementById(id);
-  let value = parseInt(input.value) || 0;
-  value = Math.max(0, value + change);
-  input.value = value;
+function changeValue(type, delta) {
+  let element = document.getElementById(type);
+  let value = parseInt(element.value);
+  if (type === "size") {
+    if (value + delta >= 5 && value + delta <= 30) {
+      element.value = value + delta;
+      const minMines = Math.ceil(element.value * element.value * 0.1);
+      const maxMines = Math.floor(element.value * element.value * 0.5);
+      let minesInput = document.getElementById("mines");
 
+      if (minesInput.value < minMines) {
+        minesInput.value = minMines;
+      } else if (minesInput.value > maxMines) {
+        minesInput.value = maxMines;
+      } else {
+        minesInput.value = minMines;
+      }
+    }
+  } else if (type === "mines") {
+    let size_value = document.getElementById("size").value;
+    const minMines = Math.ceil(size_value * size_value * 0.1);
+    const maxMines = Math.floor(size_value * size_value * 0.5);
+    if (value + delta >= minMines && value + delta <= maxMines) {
+      element.value = value + delta;
+    }
+  }
   customGrid();
+}
+
+function validateUsername() {
+  let username = document.getElementById("username");
+  let errorMessage = "Please enter your username";
+
+  if (!username.value.trim()) {
+      username.value = ""; // Հեռացնում ենք նախկին արժեքը
+      username.placeholder = errorMessage; // Տեղադրում ենք placeholder-ի մեջ
+      username.style.borderColor = "red"; // Կարմիր սահման
+      return false;
+  }
+  
+  username.placeholder = ""; // Վերականգնում ենք 
+  username.style.borderColor = ""; // Վերականգնում ենք
+  return true;
 }
 
 // Start timer when the first click happens
@@ -21,16 +57,45 @@ function stopTimer(timer) {
   timer.id = null; // Reset the timer ID
 }
 
+function validateInput(type) {
+  let element = document.getElementById(type);
+  let value = parseInt(element.value);
+  let size = parseInt(document.getElementById("size").value);
+  const minMines = Math.ceil(size * size * 0.1);
+  const maxMines = Math.floor(size * size * 0.5);
+
+  if (type === "size") {
+    if (isNaN(size)) {
+      document.getElementById("size").value = 5;
+      document.getElementById("mines").value = 3;
+    } else if (size < 5) {
+      document.getElementById("size").value = 5;
+      document.getElementById("mines").value = 3;
+    } else if (size > 30) {
+      document.getElementById("size").value = 30;
+      document.getElementById("mines").value = 90;
+    } else {
+      document.getElementById("mines").value = minMines;
+    }
+  }
+
+  if (type === "mines") {
+    if (value < minMines) {
+      document.getElementById("mines").value = minMines;
+    } else if (value > maxMines) {
+      document.getElementById("mines").value = maxMines;
+    } else if (isNaN(value)) {
+      document.getElementById("mines").value = minMines;
+    }
+  }
+
+  customGrid();
+}
+
 function customGrid() {
   document.getElementById("logo").addEventListener("click", function () {
-    let messageBox = document.getElementById("congratulation-message");
-
-    if (messageBox) {
-      messageBox.remove();
-    }
-    document.getElementById("option-container").style.display = "block";
     document.getElementById("custom-container").style.display = "none";
-    document.getElementById("main").style.display = "none";
+    document.getElementById("option-container").style.display = "block";
   });
   document.getElementById("option-container").style.display = "none";
   document.getElementById("custom-container").style.display = "block";
@@ -46,40 +111,24 @@ function customGrid() {
     mines = parseInt(document.getElementById("mines").value);
   });
 
-  if (isNaN(size)) {
-    changeValue("size", 5);
-    return;
-  } else if (size < 5) {
-    changeValue("size", 5 - size);
-    return;
-  } else if (size > 30) {
-    changeValue("size", 30 - size);
-    return;
-  }
-  const minMines = Math.ceil(size * size * 0.1);
-  const maxMines = Math.floor(size * size * 0.5);
-  if (mines < minMines) {
-    mines = minMines;
-  } else if (mines > maxMines) {
-    mines = maxMines;
-  } else if (isNaN(mines)) {
-    changeValue("mines", minMines);
-    return;
-  }
   const playButton = document.getElementById("start-game");
   playButton.addEventListener("click", () => {
-    startGame(size, mines);
+    if (validateUsername()) {
+      startGame(size, mines);
+    }
   });
 }
 
 function cancelCustom() {
   document.getElementById("custom-container").style.display = "none";
   document.getElementById("option-container").style.display = "block";
-  document.getElementById("size").value = 0;
-  document.getElementById("mines").value = 0;
+  document.getElementById("size").value = 5;
+  document.getElementById("mines").value = 3;
 }
-function selectGrid(rows, mines) {
-  startGame(rows, mines);
+function selectGrid(size, mines) {
+  if (validateUsername()) {
+    startGame(size, mines);
+  }
 }
 
 //grid creation visualy
@@ -476,6 +525,9 @@ const startGame = (size, mines) => {
   document.getElementById("username").setAttribute("readonly", true);
   const flagIndexes = [];
   let timer = { second: 0, id: null };
+  //
+  document.getElementById("timer").textContent = 0;
+  //
   let flagCount = { count: 0 };
   document.getElementById("size").addEventListener("input", function () {
     size = parseInt(document.getElementById("size").value);
@@ -536,24 +588,38 @@ const startGame = (size, mines) => {
     flagCount
   );
 
-  document
-    .getElementById("pause-resume")
-    .addEventListener("click", function () {
-      const button = document.getElementById("pause-resume");
-      if (button.textContent === "Resume") {
-        button.textContent = "Pause"; // Set button to "Pause"
-        startTimer(timer); // Resume timer
-        const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
-        allGridItems.forEach((item) => (item.style.pointerEvents = "auto"));
-      } else {
-        button.textContent = "Resume"; // Set button to "Resume"
-        stopTimer(timer); // Pause timer
-        const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
-        allGridItems.forEach((item) => (item.style.pointerEvents = "none"));
-      }
-    });
-  document.getElementById("reset").addEventListener("click", function () {
+  //
+  let pauseButton = document.getElementById("pause-resume");
+  pauseButton.replaceWith(pauseButton.cloneNode(true));
+  pauseButton = document.getElementById("pause-resume");
+  //
+
+  pauseButton.addEventListener("click", function () {
+    const button = document.getElementById("pause-resume");
+    if (button.textContent === "Resume") {
+      button.textContent = "Pause"; // Set button to "Pause"
+      startTimer(timer); // Resume timer
+      const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
+      allGridItems.forEach((item) => (item.style.pointerEvents = "auto"));
+    } else {
+      button.textContent = "Resume"; // Set button to "Resume"
+      stopTimer(timer); // Pause timer
+      const allGridItems = document.querySelectorAll('[class^="grid-item-"]');
+      allGridItems.forEach((item) => (item.style.pointerEvents = "none"));
+    }
+  });
+
+  //
+  let resetButton = document.getElementById("reset");
+  resetButton.replaceWith(resetButton.cloneNode(true));
+  resetButton = document.getElementById("reset");
+  //
+
+  resetButton.addEventListener("click", function () {
     stopTimer(timer);
+    timer.second = 0;
+    timer.id = null;
+    pauseButton.textContent = "Pause";
     document.getElementById("timer").textContent = 0;
     let messageBox = document.getElementById("congratulation-message");
     if (messageBox) {
@@ -563,8 +629,8 @@ const startGame = (size, mines) => {
   });
 
   document.getElementById("logo").addEventListener("click", function () {
-    document.getElementById("size").value = 0;
-    document.getElementById("mines").value = 0;
+    document.getElementById("size").value = 5;
+    document.getElementById("mines").value = 3;
     let messageBox = document.getElementById("congratulation-message");
     if (messageBox) {
       messageBox.remove();
@@ -578,9 +644,15 @@ const startGame = (size, mines) => {
     document.getElementById("timer").textContent = timer.second;
   });
 
-  document.getElementById("restart").addEventListener("click", function () {
-    document.getElementById("size").value = 0;
-    document.getElementById("mines").value = 0;
+  //
+  let restartButton = document.getElementById("restart");
+  restartButton.replaceWith(restartButton.cloneNode(true));
+  restartButton = document.getElementById("restart");
+  //
+
+  restartButton.addEventListener("click", function () {
+    document.getElementById("size").value = 5;
+    document.getElementById("mines").value = 3;
     document.getElementById("main").style.display = "none";
     document.getElementById("option-container").style.display = "block";
 
@@ -589,6 +661,7 @@ const startGame = (size, mines) => {
     timer.second = 0;
     timer.id = null; // Reset the timer ID
     document.getElementById("timer").textContent = 0;
+    pauseButton.textContent = "Pause";
 
     // Remove congratulation message
     let messageBox = document.getElementById("congratulation-message");

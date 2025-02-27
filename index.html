@@ -23,7 +23,7 @@
             <!-- Username Input -->
             <div class="user-input">
                 <label for="username" style="color:black; margin-right: 10px;"></label>
-                <input type="text" id="username">
+                <input type="text" id="username" maxlength="10">
             </div>
             <button id="dark-mode-btn" onclick="darkMode()">🌙</button>
         </div>
@@ -54,7 +54,7 @@
                     <label for="size">Size</label>
                     <div class="number-input">
                         <button onclick="changeValue('size', -1)">-</button>
-                        <input type="text" id="size" value="0" onchange="customGrid()">
+                        <input type="number" id="size" value="5" onchange="validateInput('size')">
                         <button onclick="changeValue('size', 1)">+</button>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <label for="mines">Mines</label>
                     <div class="number-input">
                         <button onclick="changeValue('mines', -1)">-</button>
-                        <input type="text" id="mines" value="0" onchange="customGrid()">
+                        <input type="number" id="mines" value="3" onchange="validateInput('mines')">
                         <button onclick="changeValue('mines', 1)">+</button>
                     </div>
                 </div>

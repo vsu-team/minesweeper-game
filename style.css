@@ -14,6 +14,7 @@ nav {
 }
 
 nav .logo img {
+    cursor:pointer;
     width: 48px;
     height: 48px;
     left: 30px;
@@ -379,7 +380,7 @@ label {
 
 .menu {
     display: none;
-    font-size: 2vh;
+    font-size: 2.5vh;
     width: 15%;
     height: 15%;
     background-color: white;
@@ -405,9 +406,10 @@ label {
 }
 
 .button-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.5vh;
     align-items: center;
     margin-top: 20px;
 }
@@ -523,22 +525,28 @@ label {
 }
 
 .button-container>button {
-    width: 232px;
-    height: 58px;
+    width: 60%;
+    height: 4vh;
     border-radius: 21px;
     background-color: #d9d9d9;
-    font-size: 30px;
+    font-size: 2.5vh;
     font-weight: 400;
     cursor: pointer;
     border: none;
 }
 
-.error {
-    border: 2px solid red;
-}
 
-/* input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.number-input input::-webkit-outer-spin-button,
+.number-input input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-} */
+}
+
+.number-input input {
+    -moz-appearance: textfield;
+}
+
+#username::placeholder {
+    font-size: 10px; /* Փոքրացնում ենք placeholder-ի տեքստը */
+    color: red;
+}
